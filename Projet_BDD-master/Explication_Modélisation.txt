@@ -1,0 +1,29 @@
+Voici comment se compose notre base de données pour le site d'e-commerce, centralisé sur le sport:
+-Un produit est caractérisé par son numéro de produit. Il a un nom, un prix et une marque. Il représente un ensemble d'objets ayant les mêmes caractéristiques.
+Ce produit peut être encore disponible (commandable dans la modélisation), ou indisponible (indispo) à la vente. Selon le produit, le client peut effectuer un retour, ou non.
+Dans notre site, les catégories de produits pouvant faire l'objet d'un retour sont les équipements sportifs (ballon, raquette de tennis, etc.) et le textile (short, maillot, ...).
+Le délai est défini à 15 jours maximum.
+
+-L'entité produit_commandé représente l'objet que le client va recevoir. Cet objet doit forcément être rattaché à un produit commandable. Il fait également parti d'une 
+commande, et d'une livraison. Selon le produit, il peut être renvoyé sous un certain délai, voire même refusé dès la livraison.
+
+-L'avis d'un client ne sera publié seulement s'il y a reçu le produit en question. On pourra le savoir facilement, via l'entité livraison.
+
+-Les livraisons sont forcément rattachées à une commande et peuvent contenir plusieurs produits. 
+On peut les classer en deux grandes classes :
+	- les livraisons déja parties du dépot (expédiées),
+	- les livraisons pas encore expédiées (en_attente).
+Seules les objets faisant partie des secondes peuvent faire l'objet d'annulation. 
+
+-Une commande a un numéro, est liée à un panier(et par transitivité à un client), et a une adresse de livraison. 
+-Un panier est un ensemble de produits commandables. Une fois validé et associé à un client, il donne lieu à une ou plusieurs commandes.
+
+-Un retour de produit peut avoir lieu sous 3 conditions : 
+	- le produit est livré,
+	- le produit en question est retournable,
+	- le delai n'est pas encore passé.
+Si ces 3 conditions sont respectées, un remboursement a lieu. Le décompte commence le jour de la livraison. 
+
+-Le refus est applicable à tous les produits
+
+Pour des soucis de taille, on a dû couper la modélisation en deux images.
